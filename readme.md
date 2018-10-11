@@ -36,3 +36,15 @@ php artisan db:seed
 ```
 php artisan serve
 ```
+### Getting Started for development
+
+headers for api requests
+
+'headers' => [
+
+    'Accept' => 'application/json',
+
+    'Authorization' => 'Bearer ' <accessToken>,
+
+]
+
