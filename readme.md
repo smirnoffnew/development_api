@@ -10,11 +10,15 @@ cp .env.example .env
 ```
 
 ```
-php artisan key:generate
+composer install
 ```
 
 ```
-composer install
+php artisan migrate
+```
+
+```
+php artisan key:generate
 ```
 
 ```
@@ -23,10 +27,6 @@ php artisan passport:install
 
 ```
 php artisan make:auth
-```
-
-```
-php artisan migrate
 ```
 
 ```
