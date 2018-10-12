@@ -26,10 +26,6 @@ php artisan passport:install
 ```
 
 ```
-php artisan make:auth
-```
-
-```
 php artisan db:seed
 ```
 
