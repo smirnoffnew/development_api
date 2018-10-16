@@ -26,6 +26,10 @@ php artisan passport:install
 ```
 
 ```
+php artisan sleepingowl:install
+```
+
+```
 php artisan db:seed
 ```
 
