@@ -4,7 +4,7 @@ use SleepingOwl\Admin\Navigation\Page;
 
 // Default check access logic
 // AdminNavigation::setAccessLogic(function(Page $page) {
-// 	   return auth()->user()->isSuperAdmin();
+// 	   return auth()->user()->Admin();
 // });
 //
 // AdminNavigation::addPage(\App\User::class)->setTitle('test')->setPages(function(Page $page) {
@@ -27,11 +27,18 @@ return [
         'icon'  => 'fa fa-dashboard',
         'url'   => route('admin.dashboard'),
     ],
-
+//
     [
         'title' => 'Information',
         'icon'  => 'fa fa-exclamation-circle',
         'url'   => route('admin.information'),
+    ],
+
+
+    [
+        'title' => 'Выход',
+        'icon' => 'fa fa-sign-out-alt',
+        'url' => route('admin.logout'),
     ],
 
     // Examples

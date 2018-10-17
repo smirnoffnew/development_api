@@ -29,7 +29,11 @@ class AdminAuthenticate
         }
 
         if (! $auth->user()->isAdmin()) {
-            return response('Access denied.', 401);
+            if ($request->ajax() || $request->wantsJson()) {
+                return response('Access denied.', 401);
+            } else {
+                return redirect()->guest('login');
+            }
         }
 
         return $next($request);

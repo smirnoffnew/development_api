@@ -9,3 +9,8 @@ Route::get('information', ['as' => 'admin.information', function () {
 	$content = 'Define your information here.';
 	return AdminSection::view($content, 'Information');
 }]);
+
+
+Route::get('logout', [
+    'as' => 'admin.logout',
+    'uses' => 'Admin\Http\Controllers\AuthController@logout']);
