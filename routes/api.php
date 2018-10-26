@@ -22,6 +22,15 @@ Route::group([
         'middleware' => 'auth:api'
     ], function() {
         Route::get('logout', 'AuthController@logout');
-        Route::get('user', 'AuthController@user');
+        Route::get('current', 'AuthController@currentUser');
+
+        Route::get('users', 'UserController@getUsers');
+        Route::get('users/{id}', 'UserController@getUser');
+
+        Route::group([
+            'middleware' => 'admin'
+        ], function() {
+            Route::delete('users/{id}', 'UserController@deleteUser');
+        });
     });
 });
