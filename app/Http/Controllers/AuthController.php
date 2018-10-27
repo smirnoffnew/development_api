@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
+
 class AuthController extends Controller
 {
     /**
@@ -52,7 +54,7 @@ class AuthController extends Controller
             'remember_me' => 'boolean'
         ]);
         $credentials = request(['email', 'password']);
-        if(!Auth::attempt($credentials))
+        if (!Auth::attempt($credentials))
             return response()->json([
                 'message' => 'Unauthorized'
             ], 401);
@@ -71,11 +73,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Logout user (Revoke the token)
-     *
-     * @return [string] message
-     */
     public function logout(Request $request)
     {
         $request->user()->token()->revoke();
@@ -84,14 +81,34 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Get the authenticated User
-     *
-     * @return [json] user object
-     */
-    public function currentUser(Request $request)
+    public function getCurrentUser(Request $request)
     {
         return response()->json($request->user());
+    }
+
+    public function updateCurrentUser(Request $request)
+    {
+        $request->validate([
+            'name' => 'string',
+            'email' => 'string|email|unique:users',
+            'password' => 'string',
+            'isAdmin' => 'boolean'
+        ]);
+
+        $user = Auth::user();
+
+        if ( $user->update($request->only(['name', 'email', 'password'])) ) {
+            return response()->json([
+                'message' => 'Successfully updated user!',
+                'user' => $user
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Something went wrong on update user',
+                'user' => $user
+            ], 500);
+        }
+
     }
 
 

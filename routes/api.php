@@ -22,7 +22,8 @@ Route::group([
         'middleware' => 'auth:api'
     ], function() {
         Route::get('logout', 'AuthController@logout');
-        Route::get('current', 'AuthController@currentUser');
+        Route::get('currentUser', 'AuthController@getCurrentUser');
+        Route::put('currentUser', 'AuthController@updateCurrentUser');
 
         Route::get('users', 'UserController@getUsers');
         Route::get('users/{id}', 'UserController@getUser')->where('id', '[0-9]+');

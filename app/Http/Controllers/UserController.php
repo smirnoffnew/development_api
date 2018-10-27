@@ -36,7 +36,8 @@ class UserController extends Controller
         $user = new User([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'isAdmin' => 0
         ]);
 
         if ($user->save()) {
@@ -58,7 +59,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'string',
             'email' => 'string|email|unique:users',
-            'password' => 'string|confirmed',
+            'password' => 'string',
             'isAdmin' => 'boolean'
         ]);
 

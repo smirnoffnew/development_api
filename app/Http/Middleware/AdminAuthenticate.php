@@ -30,7 +30,7 @@ class AdminAuthenticate
 
         if (! $auth->user()->isAdmin()) {
             if ($request->ajax() || $request->wantsJson()) {
-                return response('Access denied.', 401);
+                return response('Access denied.', 403);
             } else {
                 return redirect()->guest('login');
             }
