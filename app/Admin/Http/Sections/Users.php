@@ -78,7 +78,13 @@ class Users extends Section
     public function onEdit($id)
     {
         $form = AdminForm::panel()->addBody([
-            AdminFormElement::text('name', 'name')->required()->unique(),
+            AdminFormElement::text('name', 'name')->required(),
+            AdminFormElement::text('email', 'email')->required()->unique(),
+            AdminFormElement::password('password', 'password')->required()->hashWithBcrypt(),
+            AdminFormElement::password('password_confirmation', 'Password confirmation')
+                ->setValueSkipped(true)
+                ->required()
+                ->addValidationRule('same:password', 'Passwords must match!'),
             AdminFormElement::checkbox('isAdmin', 'isAdmin'),
         ]);
 
@@ -97,9 +103,9 @@ class Users extends Section
     {
         $form = AdminForm::panel()
             ->addBody([
-                AdminFormElement::text('name', 'name')->required()->unique(),
+                AdminFormElement::text('name', 'name')->required(),
                 AdminFormElement::text('email', 'email')->required()->unique(),
-                AdminFormElement::password('password', 'password')->required(),
+                AdminFormElement::password('password', 'password')->required()->hashWithBcrypt(),
                 AdminFormElement::password('password_confirmation', 'Password confirmation')
                     ->setValueSkipped(true)
                     ->required()
