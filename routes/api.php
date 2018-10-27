@@ -25,12 +25,14 @@ Route::group([
         Route::get('current', 'AuthController@currentUser');
 
         Route::get('users', 'UserController@getUsers');
-        Route::get('users/{id}', 'UserController@getUser');
+        Route::get('users/{id}', 'UserController@getUser')->where('id', '[0-9]+');
 
         Route::group([
             'middleware' => 'admin'
         ], function() {
-            Route::delete('users/{id}', 'UserController@deleteUser');
+            Route::post('users', 'UserController@createUser');
+            Route::delete('users/{id}', 'UserController@deleteUser')->where('id', '[0-9]+');
+            Route::put('users/{id}', 'UserController@updateUser')->where('id', '[0-9]+');
         });
     });
 });
