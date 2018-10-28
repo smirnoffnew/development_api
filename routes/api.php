@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 |--------------------------------------------------------------------------|
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-
 Route::group([
     'middleware' => 'cors'
 ], function() {
@@ -22,6 +18,7 @@ Route::group([
         'middleware' => 'auth:api'
     ], function() {
         Route::get('logout', 'AuthController@logout');
+
         Route::get('currentUser', 'AuthController@getCurrentUser');
         Route::put('currentUser', 'AuthController@updateCurrentUser');
 

@@ -60,11 +60,9 @@ class Users extends Section
                 AdminColumn::text('id', '#'),
                 AdminColumn::text('name', 'Name'),
                 AdminColumn::text('email', 'email'),
-
                 AdminColumn::custom('isAdmin', function ($instance) {
                     return $instance->isAdmin ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
                 }),
-
                 AdminColumn::datetime('created_at')->setLabel('Created')->setFormat('d.m.Y'),
                 AdminColumn::datetime('updated_at')->setLabel('Update')->setFormat('d.m.Y')
             )->paginate(20);
@@ -96,7 +94,7 @@ class Users extends Section
         return $form;
     }
 
-    /**
+    /**++
      * @return FormInterface
      */
     public function onCreate()
