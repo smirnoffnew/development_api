@@ -15,7 +15,7 @@ Route::group([
     Route::post('signup', 'AuthController@signup');
 
     Route::group([
-        'middleware' => 'auth:api'
+        'middleware' => ['auth:api', 'verified']
     ], function() {
         Route::get('logout', 'AuthController@logout');
 
